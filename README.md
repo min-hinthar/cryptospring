@@ -23,7 +23,7 @@ Crypto Spring is built using the following technologies:
 - [Tailwind CSS]: A utility-first CSS framework for styling web applications.
 - [Context API]: A React feature for managing global state.
 - [Alan AI]: A platform for adding voice control to web applications.
-- [Metamask](https://www.baeldung.com/java-cipher-input-output-stream): A browser extension for interacting with the Ethereum blockchain.
+- [Metamask]: A browser extension for interacting with the Ethereum blockchain.
 - [Hardhat]: A development environment for Ethereum smart contracts.
 - [OpenZeppelin Contracts]: A library of secure and reusable smart contracts.
 - [IPFS]: A distributed system for storing and accessing files.
@@ -115,6 +115,6 @@ This project is licensed under the MIT License. See the [LICENSE] file for more 
 
 ## Acknowledgements
 
-This project is inspired by the course [Cryptoket JS Mastery](https://docs.spring.io/spring-security/reference/features/integrations/cryptography.html) by JS Mastery Pro and the Burmese Spring Revolution Civil Disobedience Movement. The project aims to support the cause of democracy and human rights in Myanmar through Web3.0 and blockchain technology.
+This project is inspired by the course [Cryptoket JS Mastery] by JS Mastery Pro and the Burmese Spring Revolution Civil Disobedience Movement. The project aims to support the cause of democracy and human rights in Myanmar through Web3.0 and blockchain technology.
 
 
