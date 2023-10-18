@@ -1,8 +1,7 @@
-import Script from 'next/script';
 import { ThemeProvider } from 'next-themes';
 
+import Script from 'next/script';
 import { Navbar, Footer } from '../components';
-
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }) => (
