@@ -41,7 +41,7 @@ const Navbar = () => {
           >
             <i className="fas fa-sun" />
             <i className="fas fa-moon" />
-            <div className="w-3 h-3 absolute bg-white rounded-full ball" />
+            <div className="w-3 h-3 absolute bg-white rounded-full ball cursor-pointer" />
           </label>
         </div>
       </div>
