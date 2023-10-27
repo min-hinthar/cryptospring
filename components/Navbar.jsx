@@ -6,8 +6,33 @@ import Link from 'next/link';
 
 import images from '../assets';
 
+const MenuIems = ({ isMobile, active, setActive }) => {
+  const generateLink = () => {
+
+  };
+
+  return (
+    <ul className={`list-none flexCenter flex-row ${isMobile && 'flex-col h-full'}`}>
+      {['Explore NFTs', 'Listed NFTs', 'My NFTs'].map((item, i) => (
+        <li
+          key={i}
+          onClick={() => {}}
+          className={`flex flex-row items-center font-poppins font-semibold text-base dark:hover:text-white hover:text-nft-dark mx-3
+          ${active === item
+            ? 'dark:text-white text-nft-black-1'
+            : 'dark:text-nft-gray-3 text-nft-gray-2'}
+          `}
+        >
+          <Link href="">{item}</Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  const [active, setActive] = useState('Explore NFTs');
 
   return (
     <nav className="flexBetween w-full fixed z-10 p-4 flex-row border-b dark:bg-nft-dark bg-white dark:border-nft-black-1 border-nft-gray-1">
@@ -44,6 +69,12 @@ const Navbar = () => {
             <div className="w-3 h-3 absolute bg-white rounded-full ball cursor-pointer" />
           </label>
         </div>
+      </div>
+
+      <div className="md:hidden flex">
+        <ul className="list-none flexCenter flex-row">
+          <MenuIems active={active} setActive={setActive} />
+        </ul>
       </div>
     </nav>
   );
