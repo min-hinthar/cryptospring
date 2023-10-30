@@ -96,7 +96,7 @@ const Navbar = () => {
       </div>
       {/* LIGHT:DARK THEME TOGGLE */}
       <div className="flex flex-initial flex-row justify-end">
-        <div className="flex items=center mr-2">
+        <div className="flex items-center mr-2">
           <input
             type="checkbox"
             className="checkbox"
