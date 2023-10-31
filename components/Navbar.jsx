@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
@@ -96,7 +97,7 @@ const Navbar = () => {
       </div>
       {/* LIGHT:DARK THEME TOGGLE */}
       <div className="flex flex-initial flex-row justify-end">
-        <div className="flex items=center mr-2">
+        <div className="flex items-center mr-2">
           <input
             type="checkbox"
             className="checkbox"
