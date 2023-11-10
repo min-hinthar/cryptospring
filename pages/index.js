@@ -108,6 +108,15 @@ const Home = () => {
             </div>
           </div>
         </div>
+        {/* NFT Cards - Hot Bids - Search Bar */}
+        <div className="mt-10">
+          <div className="flexBetween mx-4 xs:mx-0 minlg:mx-8 sm:flex-col sm:items-start">
+            <h1 className="font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl text-semibold">
+              Hot Bids
+            </h1>
+          </div>
+        </div>
+
       </div>
     </div>
   );
