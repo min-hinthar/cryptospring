@@ -93,10 +93,6 @@ contract NFTMarketplace is ERC721URIStorage {
         require(msg.value == listingPrice, "Price must be equal to listing price");
 
         // create the mapping for the market items 
-        // payable(address(0)) is the owner. 
-        // currently there's no owner as the seller is putting it to market so it's an empty address
-        // last value  is boolean for sold, its false because we just put it so it's not sold yet
-        // this is creating the first market item
         idToMarketItem[tokenId] = MarketItem(
             tokenId,
             payable(msg.sender),
@@ -107,8 +103,13 @@ contract NFTMarketplace is ERC721URIStorage {
 
     // Transfer Ownership of Token from Sender to Address(this), tokenId
         _transfer(msg.sender, address(this), tokenId);
-
-        emit MarketItemCreated(tokenId, msg.sender, address(this), price, false); 
+        emit MarketItemCreated(
+            tokenId, 
+            payable(msg.sender),
+            payable(address(this)),
+            price, 
+            false
+        ); 
     }
     
     // Resell Token /* allows someone to resell a token they have purchased */
