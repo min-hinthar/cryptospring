@@ -4,6 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 
+import { NFTContext } from '../context/NFTContext';
 import { Button, Input } from '../components';
 import images from '../assets';
 
@@ -11,9 +12,13 @@ const CreateNFT = () => {
   const [fileUrl, setFileUrl] = useState(null);
   const [formInput, setFormInput] = useState({ price: '', name: '', description: '' });
   const { theme } = useTheme();
+  const { uploadToIPFS } = useContext(NFTContext);
 
-  const onDrop = useCallback(() => {
+  const onDrop = useCallback(async (acceptedFile) => {
     // upload image to the ipfs blockchain
+    const url = await uploadToIPFS(acceptedFile[0]);
+
+    setFileUrl(url);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
@@ -24,9 +29,9 @@ const CreateNFT = () => {
 
   const fileStyle = useMemo(() => (
     `dark:bg-nft-black-1 bg-white border dark:border-white border-nft-gray-2 flex flex-col items-center p-5 rounded-sm border-dashed
-    ${isDragActive && 'border-file-active'}
-    ${isDragAccept && 'border-file-accept'}
-    ${isDragReject && 'border-file-reject'}
+    ${isDragActive ? 'border-file-active' : undefined}
+    ${isDragAccept ? 'border-file-accept' : undefined}
+    ${isDragReject ? 'border-file-reject' : undefined}
     `
   ), [isDragActive, isDragAccept, isDragReject]);
 
@@ -56,7 +61,7 @@ const CreateNFT = () => {
                     height={100}
                     objectFit="contain"
                     alt="file upload"
-                    className={theme === 'light' && 'filter invert'}
+                    className={theme === 'light' ? 'filter invert' : undefined}
                   />
                 </div>
                 <p className="font-poppins dark:text-white text-nft-black-1 font-semibold text-sm">
@@ -67,13 +72,13 @@ const CreateNFT = () => {
                 </p>
               </div>
             </div>
-            {fileUrl && (
+            {fileUrl ? (
               <aside>
                 <div>
                   <img src={fileUrl} alt="asset_file" />
                 </div>
               </aside>
-            )}
+            ) : undefined}
           </div>
         </div>
         {/* Name, Description, Price Inputs */}

@@ -26,7 +26,7 @@ const MenuItems = ({ isMobile, active, setActive }) => {
   };
 
   return (
-    <ul className={`list-none flexCenter flex-row ${isMobile && 'flex-col h-full'}`}>
+    <ul className={`list-none flexCenter flex-row ${isMobile ? 'flex-col h-full' : undefined}`}>
       {['Explore NFTs', 'Listed NFTs', 'My NFTs'].map((item, i) => (
         <li
           key={i}
@@ -131,7 +131,7 @@ const Navbar = () => {
               height={20}
               alt="close menu"
               onClick={() => setIsOpen(false)}
-              className={theme === 'light' && 'filter invert'}
+              className={theme === 'light' ? 'filter invert' : undefined}
             />
           ) : (
             <Image
@@ -141,20 +141,20 @@ const Navbar = () => {
               height={25}
               alt="menu"
               onClick={() => setIsOpen(true)}
-              className={theme === 'light' && 'filter invert'}
+              className={theme === 'light' ? 'filter invert' : undefined}
             />
           )}
 
-        {isOpen && (
-        <div className="fixed inset-0 top-65 dark:bg-nft-dark bg-white z-10 nav-h flex justify-between flex-col">
-          <div className="flex-1 p-4">
-            <MenuItems active={active} setActive={setActive} isMobile />
+        {isOpen ? (
+          <div className="fixed inset-0 top-65 dark:bg-nft-dark bg-white z-10 nav-h flex justify-between flex-col">
+            <div className="flex-1 p-4">
+              <MenuItems active={active} setActive={setActive} isMobile />
+            </div>
+            <div className="p-4 border-t dark:border-nft-black-1 border-nft-gray-1">
+              <ButtonGroup setActive={setActive} router={router} />
+            </div>
           </div>
-          <div className="p-4 border-t dark:border-nft-black-1 border-nft-gray-1">
-            <ButtonGroup setActive={setActive} router={router} />
-          </div>
-        </div>
-        )}
+        ) : undefined}
       </div>
     </nav>
   );
