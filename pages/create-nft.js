@@ -10,15 +10,17 @@ import images from '../assets';
 
 const CreateNFT = () => {
   const [fileUrl, setFileUrl] = useState(null);
+  const [fileID, setFileID] = useState(null);
   const [formInput, setFormInput] = useState({ price: '', name: '', description: '' });
   const { theme } = useTheme();
   const { uploadToIPFS } = useContext(NFTContext);
 
   const onDrop = useCallback(async (acceptedFile) => {
     // upload image to the ipfs blockchain
-    const url = await uploadToIPFS(acceptedFile[0]);
+    const url = await uploadToIPFS(acceptedFile);
 
     setFileUrl(url);
+    setFileID(url.substring(url.indexOf('/') + 2, url.indexOf('.')));
   }, []);
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
@@ -29,9 +31,9 @@ const CreateNFT = () => {
 
   const fileStyle = useMemo(() => (
     `dark:bg-nft-black-1 bg-white border dark:border-white border-nft-gray-2 flex flex-col items-center p-5 rounded-sm border-dashed
-    ${isDragActive ? 'border-file-active' : undefined}
-    ${isDragAccept ? 'border-file-accept' : undefined}
-    ${isDragReject ? 'border-file-reject' : undefined}
+    ${isDragActive && 'border-file-active'}
+    ${isDragAccept && 'border-file-accept'}
+    ${isDragReject && 'border-file-reject'}
     `
   ), [isDragActive, isDragAccept, isDragReject]);
 
