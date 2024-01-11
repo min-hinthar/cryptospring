@@ -17,6 +17,14 @@ const nextConfig = {
   },
   images: {
     domains: ['bafybeidxae6kezhnfj5m3ktgvgotvjkr2zcfamiqxq42qrvv4us5u4ccca.ipfs.w3s.link'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'bafybeigoxjf46zecipu4aodkchevpshdx74t3bddd3j4q5oqrsmqj453oe.ipfs.w3s.link',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
