@@ -16,7 +16,7 @@ const nextConfig = {
     GOERLI_PRIVATE_KEY_1: process.env.GOERLI_PRIVATE_KEY_1,
   },
   images: {
-    domains: ['infura-ipfs.io'],
+    domains: ['bafybeidxae6kezhnfj5m3ktgvgotvjkr2zcfamiqxq42qrvv4us5u4ccca.ipfs.w3s.link'],
   },
 };
 

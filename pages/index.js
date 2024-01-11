@@ -10,12 +10,18 @@ import { makeId } from '../utils/makeId';
 const Home = () => {
   const { fetchNFTs } = useContext(NFTContext);
   const [hideButton, setHideButton] = useState(false);
+  const [nfts, setNfts] = useState([]);
   const theme = useTheme();
   const parentRef = useRef(null);
   const scrollRef = useRef(null);
 
   // useEffect(() => {
-  //   fetchNFTs().then(() => {});
+  //   fetchNFTs()
+  //     .then((items) => {
+  //       setNfts(items);
+
+  //       console.log(items);
+  //     });
   // }, []);
 
   const handleScroll = (direction) => {
