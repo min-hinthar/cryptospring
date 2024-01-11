@@ -14,9 +14,9 @@ const Home = () => {
   const parentRef = useRef(null);
   const scrollRef = useRef(null);
 
-  useEffect(() => {
-    fetchNFTs().then(() => {});
-  }, []);
+  // useEffect(() => {
+  //   fetchNFTs().then(() => {});
+  // }, []);
 
   const handleScroll = (direction) => {
     const { current } = scrollRef;
