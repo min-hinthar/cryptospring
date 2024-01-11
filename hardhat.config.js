@@ -1,13 +1,15 @@
-const fs = require('fs');
 require('@nomiclabs/hardhat-waffle');
 
-const privateKey = fs.readFileSync('.secret').toString().trim();
+const ALCHEMY_API_KEY = 'hO7EsxDJnAof-BvdQvUH34rzQzIi9i24';
+const GOERLI_PRIVATE_KEY_1 = '084bc126962981023285e8cb2fbd9d926099b383bb829ad2a39997b7e3e553cc';
 
 module.exports = {
+  solidity: '0.8.4',
+  defaultNetwork: 'goerli',
   networks: {
-    hardhat: {
-      chainId: 1337,
+    goerli: {
+      url: `https://eth-goerli.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
+      accounts: [GOERLI_PRIVATE_KEY_1],
     },
   },
-  solidity: '0.8.4',
 };

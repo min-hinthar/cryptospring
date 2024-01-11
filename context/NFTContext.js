@@ -4,9 +4,9 @@ import { ethers } from 'ethers';
 import axios from 'axios';
 import { create } from '@web3-storage/w3up-client';
 
-import { MarketAddress, MarketAddressAbi } from './constants';
+import { MarketAddress, MarketAddressABI } from './constants';
 
-const fetchContract = (signerOrProvider) => new ethers.Contract(MarketAddress, MarketAddressAbi, signerOrProvider);
+const fetchContract = (signerOrProvider) => new ethers.Contract(MarketAddress, MarketAddressABI, signerOrProvider);
 
 export const NFTContext = React.createContext();
 
@@ -97,11 +97,45 @@ export const NFTProvider = ({ children }) => {
       await createSale(url, price);
 
       router.push('/');
+      return true;
     } catch (error) {
       console.log('Error uploading file to IPFS', error);
+      return false;
     }
+  };
 
-    router.push('/');
+  const fetchNFTs = async () => {
+    // const provider = new ethers.providers.JsonRpcProvider();
+    const network = 'goerli';
+    const apiKey = process.env.ALCHEMY_API_KEY;
+    const provider = new ethers.providers.AlchemyProvider(network, apiKey);
+    const contract = fetchContract(provider);
+
+    try {
+      const data = await contract.fetchMarketItems();
+
+      const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price: unformattedPrice }) => {
+        const tokenURI = await contract.tokenURI(tokenId);
+        const { data: { image, name, description } } = await axios.get(tokenURI);
+        const price = ethers.utils.formatUnits(unformattedPrice.toString(), 'ether');
+
+        return {
+          price,
+          tokenId: tokenId.toNumber(),
+          seller,
+          owner,
+          image,
+          name,
+          description,
+          tokenURI,
+        };
+      }));
+      console.log('Fetch NFTs Success', items);
+      return items;
+    } catch (e) {
+      console.log('No market items: ', e);
+      return [];
+    }
   };
 
   useEffect(() => {
@@ -109,7 +143,7 @@ export const NFTProvider = ({ children }) => {
   }, []);
 
   return (
-    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT }}>
+    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs }}>
       {children}
     </NFTContext.Provider>
   );

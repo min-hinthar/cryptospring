@@ -23,7 +23,7 @@ contract NFTMarketplace is ERC721URIStorage {
 
     // fee to list an nft on the marketplace
     // charge a listing fee.
-    uint256 listingPrice = 0.025 ether;
+    uint256 listingPrice = 0.002 ether;
 
     // declaring the owner of the contract
     // owner earns a commision on every item sold
@@ -147,8 +147,8 @@ contract NFTMarketplace is ERC721URIStorage {
 
     // Fetch Market Items /* View Only  /* Returns all unsold market items */
     function fetchMarketItems() public view returns (MarketItem[] memory) {
-        uint itemCount = _tokenIds.current();
-        uint unsoldItemCount = _itemsSold.current() - _itemsSold.current();
+        uint256 numItems = _tokenIds.current();
+        uint unsoldItemCount = numItems - _itemsSold.current();
         uint currentIndex = 0;
 
         // looping over the number of items created and incremnet htat number if we have an empty address 
@@ -157,7 +157,7 @@ contract NFTMarketplace is ERC721URIStorage {
         // the type of the element in the array is marketitem, and the unsolditemcount is the lenght
         MarketItem[] memory items = new MarketItem[](unsoldItemCount);
 
-        for(uint i = 0; i < itemCount; i++ ) {
+        for(uint i = 0; i < numItems; i++ ) {
             // check to see if the item is unsold -> checking if the owner is an empty address -> then it's unsold
             // above, where we were creating a new market item, we were setting the address to be an empty address
             // the address get's populated if the item is sold
