@@ -41,8 +41,6 @@ export const NFTProvider = ({ children }) => {
       const space = await client.createSpace('CryptoSpring');
       const myAccount = await client.login(process.env.WEB_3_LOGIN);
       await myAccount.provision(space.did());
-      // await space.createRecovery(myAccount.did());
-      // await space.save();
       await client.setCurrentSpace(process.env.WEB_3_STORAGE_KEY);
 
       const cid = await client.uploadDirectory(files);
@@ -55,7 +53,7 @@ export const NFTProvider = ({ children }) => {
     }
   };
 
-  const createSale = async (url, formInputPrice, isReselling, id) => {
+  const createSale = async (url, formInputPrice) => {
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
@@ -77,8 +75,6 @@ export const NFTProvider = ({ children }) => {
     const space = await client.createSpace('CryptoSpring');
     const myAccount = await client.login(process.env.WEB_3_LOGIN);
     await myAccount.provision(space.did());
-    // await space.createRecovery(myAccount.did());
-    // await space.save();
     await client.setCurrentSpace(process.env.WEB_3_STORAGE_KEY);
 
     const { name, description, price } = formInput;
@@ -105,10 +101,8 @@ export const NFTProvider = ({ children }) => {
   };
 
   const fetchNFTs = async () => {
-    // const provider = new ethers.providers.JsonRpcProvider();
     const network = 'goerli';
-    const apiKey = process.env.ALCHEMY_API_KEY;
-    const provider = new ethers.providers.AlchemyProvider(network, apiKey);
+    const provider = new ethers.providers.AlchemyProvider(network, process.env.ALCHEMY_API_KEY);
     const contract = fetchContract(provider);
 
     try {
