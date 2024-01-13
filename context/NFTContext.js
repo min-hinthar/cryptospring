@@ -126,7 +126,7 @@ export const NFTProvider = ({ children }) => {
           tokenURI,
         };
       }));
-      console.log('Fetch NFTs Success', items);
+      // console.log('Fetch NFTs Success', items);
       return items;
     } catch (e) {
       console.log('No market items: ', e);
