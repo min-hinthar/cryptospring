@@ -14,10 +14,18 @@ const nextConfig = {
     WEB_3_LOGIN: process.env.WEB_3_LOGIN,
     ALCHEMY_API_KEY: process.env.ALCHEMY_API_KEY,
     GOERLI_PRIVATE_KEY_1: process.env.GOERLI_PRIVATE_KEY_1,
-    GOERLI_PRIVATE_KEY_2: process.env.GOERLI_PRIVATE_KEY_1,
+    GOERLI_PRIVATE_KEY_2: process.env.GOERLI_PRIVATE_KEY_2,
+    GOERLI_PRIVATE_KEY_3: process.env.GOERLI_PRIVATE_KEY_3,
   },
   images: {
-    domains: ['bafybeidxae6kezhnfj5m3ktgvgotvjkr2zcfamiqxq42qrvv4us5u4ccca.ipfs.w3s.link', 'bafybeibjmlo6apjj47nqqrdlo35aycugeiks4r4i7zn6n4nowohujj5ns4.ipfs.w3s.link'],
+    domains: [
+      'bafybeidxae6kezhnfj5m3ktgvgotvjkr2zcfamiqxq42qrvv4us5u4ccca.ipfs.w3s.link',
+      'bafybeibjmlo6apjj47nqqrdlo35aycugeiks4r4i7zn6n4nowohujj5ns4.ipfs.w3s.link',
+      'bafybeid6klu65ft5ei7wcky3csfy3mev5at7rqqggevgndnt5qe6empqxe.ipfs.w3s.link',
+      'bafybeic7i4ee4cvknbffpxekmbcynogoflmwhf5gogspimemokjpnrvwda.ipfs.w3s.link',
+      'bafybeicix433qbvosp5gugxpb4n7vccpxfu4ikv3qr4jfva5blrczie6he.ipfs.w3s.link',
+      'bafybeiabl6oxpe3jh237pvaa3itigygynptt2c3xk5cnlqpdfl2f5aro54.ipfs.w3s.link',
+    ],
     remotePatterns: [
       {
         protocol: 'https',

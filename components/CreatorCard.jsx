@@ -44,7 +44,7 @@ const CreatorCard = ({ rank, creatorImage, creatorName, creatorEths }) => {
           {creatorName}
         </p>
         <p className="font-poppins dark:text-white text-nft-black-1 font-semibold text-base">
-          {creatorEths.toFixed(2)} <span> {nftCurrency} </span>
+          {creatorEths.toFixed(4)} <span> {nftCurrency} </span>
         </p>
       </div>
     </div>

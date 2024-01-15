@@ -83,7 +83,7 @@ export const NFTProvider = ({ children }) => {
 
     if (!name || !description || !price || !fileUrl) return;
 
-    const data = new Blob([JSON.stringify({ name, description, image: fileUrl, fileID })], { type: 'application/json' });
+    const data = new Blob([JSON.stringify({ name, description, price, image: fileUrl, fileID })], { type: 'application/json' });
     const files = [new File([data], fileID)];
 
     try {
@@ -128,8 +128,8 @@ export const NFTProvider = ({ children }) => {
       }));
       // console.log('Fetch NFTs Success', items);
       return items;
-    } catch (e) {
-      console.log('No market items: ', e);
+    } catch (error) {
+      console.log('No market items: ', error);
       return [];
     }
   };
@@ -142,28 +142,33 @@ export const NFTProvider = ({ children }) => {
 
     const contract = fetchContract(signer);
 
-    const data = type === 'fetchItemsListed'
-      ? await contract.fetchItemsListed()
-      : await contract.fetchMyNFTs();
+    try {
+      const data = type === 'fetchItemsListed'
+        ? await contract.fetchItemsListed()
+        : await contract.fetchMyNFTs();
 
-    const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price: unformattedPrice }) => {
-      const tokenURI = await contract.tokenURI(tokenId);
-      const { data: { image, name, description } } = await axios.get(tokenURI);
-      const price = ethers.utils.formatUnits(unformattedPrice.toString(), 'ether');
+      const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price: unformattedPrice }) => {
+        const tokenURI = await contract.tokenURI(tokenId);
+        const { data: { image, name, description } } = await axios.get(tokenURI);
+        const price = ethers.utils.formatUnits(unformattedPrice.toString(), 'ether');
 
-      return {
-        price,
-        tokenId: tokenId.toNumber(),
-        seller,
-        owner,
-        image,
-        name,
-        description,
-        tokenURI,
-      };
-    }));
+        return {
+          price,
+          tokenId: tokenId.toNumber(),
+          seller,
+          owner,
+          image,
+          name,
+          description,
+          tokenURI,
+        };
+      }));
 
-    return items;
+      return items;
+    } catch (error) {
+      console.log('No items listed: ', error);
+      return [];
+    }
   };
 
   const buyNFT = async (nft) => {
@@ -181,7 +186,11 @@ export const NFTProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    checkIfWalletIsConnected();
+    try {
+      checkIfWalletIsConnected();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (

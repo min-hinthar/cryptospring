@@ -63,9 +63,13 @@ const NFTDetails = () => {
   const [successModal, setSuccessModal] = useState(false);
 
   useEffect(() => {
-    if (!router.isReady) return;
-    setNft(router.query);
-    setIsLoading(false);
+    try {
+      if (!router.isReady) return;
+      setNft(router.query);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   }, [router.isReady]);
 
   const checkOut = async () => {

@@ -23,7 +23,11 @@ const ResellNFT = () => {
   };
 
   useEffect(() => {
-    if (tokenURI) fetchNFT();
+    try {
+      if (tokenURI) fetchNFT();
+    } catch (error) {
+      console.log(error);
+    }
   }, [tokenURI]);
 
   const resell = async () => {

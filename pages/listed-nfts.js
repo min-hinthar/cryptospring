@@ -9,13 +9,17 @@ const ListedNFTs = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchMyNFTsOrListedNFTs('fetchItemsListed')
-      .then((items) => {
-        setNfts(items);
-        setIsLoading(false);
+    try {
+      fetchMyNFTsOrListedNFTs('fetchItemsListed')
+        .then((items) => {
+          setNfts(items);
+          setIsLoading(false);
 
-        console.log(items);
-      });
+          console.log(items);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   if (isLoading) {
