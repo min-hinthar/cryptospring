@@ -22,7 +22,7 @@ const MyNFTs = () => {
           setNftsCopy(items);
           setIsLoading(false);
 
-          console.log(items);
+          // console.log(items);
         });
     } catch (error) {
       console.log(error);
@@ -66,7 +66,7 @@ const MyNFTs = () => {
 
     if (filteredNfts.length) {
       setNfts(filteredNfts);
-      console.log(filteredNfts);
+      // console.log(filteredNfts);
     } else {
       setNfts(nftsCopy);
       console.log('No NFTs!');

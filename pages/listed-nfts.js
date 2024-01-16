@@ -15,7 +15,7 @@ const ListedNFTs = () => {
           setNfts(items);
           setIsLoading(false);
 
-          console.log(items);
+          // console.log(items);
         });
     } catch (error) {
       console.log(error);

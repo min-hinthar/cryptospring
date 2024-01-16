@@ -46,8 +46,8 @@ export const NFTProvider = ({ children }) => {
 
       const cid = await client.uploadDirectory(files);
       const url = `https://${cid}.ipfs.w3s.link/${files[0].name}`;
-      console.log('stored files with cid:', cid);
-      console.log(url);
+      // console.log('stored files with cid:', cid);
+      // console.log(url);
       return url;
     } catch (error) {
       console.log('Error uploading file to IPFS', error);
@@ -71,7 +71,7 @@ export const NFTProvider = ({ children }) => {
     setIsLoadingNFT(true);
     await transaction.wait();
 
-    console.log(contract);
+    // console.log(contract);
   };
 
   const createNFT = async (formInput, fileUrl, router, fileID) => {
@@ -90,7 +90,7 @@ export const NFTProvider = ({ children }) => {
 
     try {
       const added = await client.uploadDirectory(files);
-      console.log('FILE ID: ', fileID);
+      // console.log('FILE ID: ', fileID);
 
       const url = `https://${added}.ipfs.w3s.link/${fileID}`;
 
@@ -108,7 +108,7 @@ export const NFTProvider = ({ children }) => {
     setIsLoadingNFT(false);
 
     const network = 'goerli';
-    const provider = new ethers.providers.AlchemyProvider(network, process.env.ALCHEMY_API_KEY);
+    const provider = new ethers.providers.AlchemyProvider(network, process.env.ALCHEMY_API_KEY2);
     const contract = fetchContract(provider);
 
     try {
@@ -151,7 +151,7 @@ export const NFTProvider = ({ children }) => {
     try {
       const data = type === 'fetchItemsListed'
         ? await contract.fetchItemsListed()
-        : await contract.fetchMyNFTs();
+        : await contract.fetchMyNfts();
 
       const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price: unformattedPrice }) => {
         const tokenURI = await contract.tokenURI(tokenId);
