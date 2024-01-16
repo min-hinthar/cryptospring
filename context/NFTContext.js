@@ -39,9 +39,9 @@ export const NFTProvider = ({ children }) => {
   const uploadToIPFS = async (files) => {
     try {
       const client = await create();
-      const space = await client.createSpace('CryptoSpring');
-      const myAccount = await client.login(process.env.WEB_3_LOGIN);
-      await myAccount.provision(space.did());
+      // const space = await client.createSpace('CryptoSpring');
+      // const myAccount = await client.login(process.env.WEB_3_LOGIN);
+      // await myAccount.provision(space.did());
       await client.setCurrentSpace(process.env.WEB_3_STORAGE_KEY);
 
       const cid = await client.uploadDirectory(files);
@@ -76,9 +76,9 @@ export const NFTProvider = ({ children }) => {
 
   const createNFT = async (formInput, fileUrl, router, fileID) => {
     const client = await create();
-    const space = await client.createSpace('CryptoSpring');
-    const myAccount = await client.login(process.env.WEB_3_LOGIN);
-    await myAccount.provision(space.did());
+    // const space = await client.createSpace('CryptoSpring');
+    // const myAccount = await client.login(process.env.WEB_3_LOGIN);
+    // await myAccount.provision(space.did());
     await client.setCurrentSpace(process.env.WEB_3_STORAGE_KEY);
 
     const { name, description, price } = formInput;

@@ -25,6 +25,8 @@ const nextConfig = {
       'bafybeic7i4ee4cvknbffpxekmbcynogoflmwhf5gogspimemokjpnrvwda.ipfs.w3s.link',
       'bafybeicix433qbvosp5gugxpb4n7vccpxfu4ikv3qr4jfva5blrczie6he.ipfs.w3s.link',
       'bafybeiabl6oxpe3jh237pvaa3itigygynptt2c3xk5cnlqpdfl2f5aro54.ipfs.w3s.link',
+      'bafybeiabl6oxpe3jh237pvaa3itigygynptt2c3xk5cnlqpdfl2f5aro54.ipfs.w3s.link',
+      'bafybeib2q4v2v4uen4sngtzwuw6eb2tmildqwx5mycc2s6cx2bkcw4dmra.ipfs.w3s.link',
     ],
     remotePatterns: [
       {
